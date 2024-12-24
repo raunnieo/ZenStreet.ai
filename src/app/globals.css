@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 201 74% 32%; /* #16678c */
+    --primary-hover: 201 74% 25%; /* darker variant */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --card-gradient-from: 0 0% 100%;
+    --card-gradient-to: 210 40% 98%;
+    --card-border: 201 74% 32% 0.1;
+    --card-shadow: 201 74% 32% 0.1;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 223 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 223 47% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 201 74% 32%; /* #16678c */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 201 74% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 223 47% 14%;
+    --muted-foreground: 215 20.2% 75%;
+    --accent: 201 74% 24%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 223 47% 20%;
+    --input: 223 47% 20%;
+    --ring: 201 74% 32%;
+    --card-gradient-from: 223 47% 14%;
+    --card-gradient-to: 223 47% 16%;
+    --card-border: 201 74% 32% 0.2;
+    --card-shadow: 0 0% 0% 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Update custom styles for dark mode support */
+.bg-primary {
+  background-color: hsl(var(--primary));
+}
+
+.text-primary {
+  color: hsl(var(--primary));
+}
+
+.border-primary {
+  border-color: hsl(var(--primary));
+}
+
+.hover-primary:hover {
+  background-color: hsl(var(--primary-hover));
+}
+
+/* Update Card styles */
+.card-gradient {
+  background: linear-gradient(
+    145deg,
+    hsl(var(--card-gradient-from)) 0%,
+    hsl(var(--card-gradient-to)) 100%
+  );
+  border: 1px solid hsla(var(--card-border));
+  box-shadow: 0 4px 6px -1px hsla(var(--card-shadow)),
+    0 2px 4px -1px hsla(var(--card-shadow));
+}
+
+/* Header and Footer styles */
+.header-gradient {
+  background: linear-gradient(135deg, #16678c 0%, #1a7ba8 50%, #16678c 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-gradient {
+  background-color: var(--background);
+}
+
+/* Custom button styles */
+.button-gradient {
+  background: linear-gradient(135deg, #16678c 0%, #1a7ba8 50%, #16678c 100%);
+  transition: all 0.3s ease;
+}
+
+.button-gradient:hover {
+  background: linear-gradient(135deg, #135270 0%, #16678c 50%, #135270 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(22, 103, 140, 0.25);
+}
+
+.button-outline {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-outline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(22, 103, 140, 0.1),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.button-outline:hover::before {
+  left: 100%;
+}
+
+/* Add dark mode specific animations */
+@media (prefers-color-scheme: dark) {
+  .card-gradient {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .header-gradient {
+    background: linear-gradient(
+      135deg,
+      rgba(22, 103, 140, 0.95) 0%,
+      rgba(26, 123, 168, 0.95) 50%,
+      rgba(22, 103, 140, 0.95) 100%
+    );
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Custom Tooltip styles */
+[data-radix-popper-content-wrapper] {
+  opacity: 0.9 !important;
+}
+
+.TooltipContent {
+  background-color: transparent !important;
+  color: hsl(var(--muted-foreground)) !important;
+  font-size: 0.875rem !important;
+  padding: 0.5rem !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.TooltipContent[data-state="delayed-open"][data-side="top"] {
+  animation: slideDownAndFade 0.2s ease-out;
+}
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
