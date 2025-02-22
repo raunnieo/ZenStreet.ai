@@ -14,7 +14,7 @@ const Header = () => {
 
           {/* Centered title */}
           <h1 className="text-2xl font-bold text-white absolute left-1/2 -translate-x-1/2">
-            ZenStreet.ai
+            MultiFourms
           </h1>
 
           {/* Right-aligned toggle with more padding */}

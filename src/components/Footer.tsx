@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-4">
             <p className="text-sm text-text-primary">
-              © 2024 ZenStreet.ai. All rights reserved.
+              © 2025 MultiFourms. All rights reserved.
             </p>
             <a
               href="https://www.instagram.com/zenstreet.ai"
